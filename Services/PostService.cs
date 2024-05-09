@@ -45,6 +45,13 @@ public class PostService
             await _context.SaveChangesAsync();
         }
     }
+    
+    public async Task<IEnumerable<Post>> GetPostsByUserIdAsync(int userId)
+    {
+        return await _context.Posts
+            .Where(post => post.UserId == userId)
+            .ToListAsync();
+    }
 }
 
 // public interface IPostsService
