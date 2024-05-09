@@ -52,6 +52,13 @@ public class PostService
             .Where(post => post.UserId == userId)
             .ToListAsync();
     }
+    
+    public async Task<List<Post>> GetPostsByUserIdsAsync(List<int> userIds)
+    {
+        return await _context.Posts
+            .Where(p => userIds.Contains(p.UserId))
+            .ToListAsync();
+    }
 }
 
 // public interface IPostsService

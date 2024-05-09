@@ -110,4 +110,22 @@ public class PostController : ControllerBase
         await _postService.DeletePostAsync(id);
         return NoContent();
     }
+    
+    [HttpPost("byUserIds")]
+    public async Task<IActionResult> GetPostsByUserIds([FromBody] List<int> userIds)
+    {
+        if (userIds == null || userIds.Count == 0)
+        {
+            return BadRequest("List of user IDs is required.");
+        }
+
+        var posts = await _postService.GetPostsByUserIdsAsync(userIds);
+
+        if (posts == null || posts.Count == 0)
+        {
+            return NotFound("No posts found for the provided user IDs.");
+        }
+
+        return Ok(posts);
+    }
 }
