@@ -38,12 +38,12 @@ public class PostController : ControllerBase
         return Ok(createdPost);
     }
 
-    // [HttpGet]
-    // public async Task<ActionResult<IEnumerable<Post>>> GetAllPosts()
-    // {
-    //     var posts = await _postService.GetAllPostsAsync();
-    //     return Ok(posts);
-    // }
+    [HttpGet("all")]
+    public async Task<ActionResult<IEnumerable<Post>>> GetAllPosts()
+    {
+        var posts = await _postService.GetAllPostsAsync();
+        return Ok(posts);
+    }
     
     [Authorize]
     [HttpGet]
